@@ -67,13 +67,13 @@
                         <form id="registerForm">
                             <div class="mb-3">
                                 <label for="registerName" class="form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="registerName" placeholder="Ingresa tu nombre"
-                                    required>
+                                <input type="text" class="form-control" id="registerName"
+                                    placeholder="Ingresa tu nombre" required>
                             </div>
                             <div class="mb-3">
                                 <label for="registerEmail" class="form-label">Email:</label>
-                                <input type="email" class="form-control" id="registerEmail" placeholder="ejemplo@correo.com"
-                                    required>
+                                <input type="email" class="form-control" id="registerEmail"
+                                    placeholder="ejemplo@correo.com" required>
                             </div>
                             <div class="mb-3">
                                 <label for="registerPassword" class="form-label">Contraseña:</label>
@@ -102,29 +102,81 @@
         </section>
 
         <!-- seccion carrito -->
-        <section>
-            <div class="section hidden" id="cartSection">
-                <div class="container text-center">
-                    <h2>Mi pedido</h2>
-                    <div id="cartItems" class="mb-3 cart-items">
-                        <!-- los items del carrito se insertarán dinamicamente -->
-                    </div>
-                    <h4 id="cartTotal">Total: $0.00</h4>
-                    <button id="checkoutButton" class="btn btn-success">Finalizar Compra</button>
+        <section class="section hidden" id="cartSection">
+            <div class="container text-center">
+                <h2>Mi pedido</h2>
+                <div id="cartItems" class="mb-3 cart-items">
+                    <!-- los items del carrito se insertarán dinamicamente -->
                 </div>
+                <h4 id="cartTotal">Total: $0.00</h4>
+                <button id="checkoutButton" class="btn btn-success">Finalizar Compra</button>
             </div>
         </section>
 
         <!-- seccion pedidos del usuario -->
-        <section>
-            <div id="userOrdersSection" class="section hidden">
-                <div class="container text-center">
-                    <h2>Mis Pedidos</h2>
-                    <div id="userOrdersList">
-                        <!-- historial de pedidos del usuario-->
+        <section class="section hidden" id="userOrdersSection">
+            <div class="container text-center">
+                <h2>Mis Pedidos</h2>
+                <div id="userOrdersList">
+                    <!-- historial de pedidos del usuario-->
                 </div>
             </div>
         </section>
+
+        <!-- seccion dashboard admin -->
+        <section id="adminDashboard" class="section hidden">
+            <div class="container text-center">
+                <h2 class="text-admin">Panel de Administración</h2>
+                <div class="stats-dashboard">
+                    <div class="stats-card">
+                        <h3>Pedidos pendientes</h3>
+                        <p class="stat-value" id="statPending">0</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>En preparación</h3>
+                        <p class="stat-value" id="statPreparing">0</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Entregados</h3>
+                        <p class="stat-value" id="statDelivered">0</p>
+                    </div>
+                    <div class="stats-card">
+                        <h3>Ventas totales</h3>
+                        <p class="stat-value" id="statSales">0</p>
+                    </div>
+                    <div>
+                        <!-- futuro dashboard con grafico y estadisticas -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- seccion gestion de productos -->
+        <section id="adminMenuSection" class="section hidden">
+            <div class="container text-center">
+                <h2>Gestión de productos</h2>
+                <button id="addMenuItemBtn" class="btn btn-primary">Agregar Producto</button>
+                <div id="menuManagementGrid" class="management-grid">
+                    <!-- los productos apareceran aca para ser editados o eliminados -->
+                </div>
+            </div>
+        </section>
+
+        <!-- seccion pedidos -->
+        <section id="adminOrdersSection" class="section hidden">
+            <div class="container text-center">
+                <h2>Gestión de Pedidos</h2>
+                <div id="ordersManagementList" class="management-list">
+                    <!-- los pedidos apareceran aca para ser gestionados -->
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p class="text-center mb-0">Pizzeria UTN. Todos los derechos reservados.</p>
+            </div>
+        </footer>
 
     </main>
 
