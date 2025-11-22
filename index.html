@@ -14,19 +14,12 @@
 
 <body>
     <header id="header">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">
-                    <h1 class="h3 mb-0">Pizzeria UTN</h1>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                    <ul class="navbar-nav nav-menu">
-                        <!-- dinamicamente insertamos los links de navegacion segun el rol del usuario -->
-                    </ul>
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>Pizzería UTN</h1>
+                </div>
+                <div class="nav-menu" id="navMenu">
                 </div>
             </div>
         </nav>
@@ -50,8 +43,9 @@
                                     placeholder="Ingresa tu contraseña" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Ingresar</button>
-                            <p class="text-center mt-3 mb-0">¿No tienes cuenta? <a href="#"
-                                    class="text-decoration-none">Regístrate</a></p>
+                            <p class="text-center mt-3 mb-0">¿No tienes cuenta?
+                                <a href="#" class="text-decoration-none" id="registerLink">Regístrate</a>
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -86,6 +80,9 @@
                                     placeholder="Confirma tu contraseña" required>
                             </div>
                             <button type="submit" class="btn btn-primary w-100">Registrarse</button>
+                            <p class="text-center mt-3 mb-0">¿Ya tienes cuenta?
+                                <a href="#" class="text-decoration-none" id="loginLink">Inicia sesión</a>
+                            </p>
                         </form>
                     </div>
                 </div>
@@ -124,7 +121,7 @@
         </section>
 
         <!-- seccion dashboard admin -->
-        <section id="adminDashboard" class="section hidden">
+        <section id="adminSection" class="section hidden">
             <div class="container text-center">
                 <h2 class="text-admin">Panel de Administración</h2>
                 <div class="stats-dashboard">
@@ -156,6 +153,26 @@
             <div class="container text-center">
                 <h2>Gestión de productos</h2>
                 <button id="addMenuItemBtn" class="btn btn-primary">Agregar Producto</button>
+                <div id="menuItemFormContainer" class="form-container hidden">
+                    <h3 id="formTitle">Agregar Producto</h3>
+                    <form id="menuItemForm">
+                        <input type="hidden" id="itemId">
+                        <input type="text" id="itemName" placeholder="Nombre" required>
+                        <select id="itemType" required>
+                            <option value="Pizza">Pizza</option>
+                            <option value="Bebida">Bebida</option>
+                        </select>
+                        <input type="number" id="itemPrice" placeholder="Precio" required>
+                        <label>
+                            <input type="checkbox" id="itemAvailable" checked>
+                            Disponible
+                        </label>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Guardar</button>
+                            <button type="button" id="cancelBtn" class="btn btn-secondary">Cancelar</button>
+                        </div>
+                    </form>
+                </div>
                 <div id="menuManagementGrid" class="management-grid">
                     <!-- los productos apareceran aca para ser editados o eliminados -->
                 </div>
@@ -185,7 +202,10 @@
         crossorigin="anonymous"></script>
     <script src="js/api.js"></script>
     <script src="js/auth.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/carrito.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/utilidades.js"></script>
 </body>
 
 </html>
