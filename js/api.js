@@ -80,7 +80,7 @@ const getOrdersByUserId = async (userId) => {
         console.warn('getOrders no devolvió un array:', orders);
         return [];
     }
-    return orders.filter(order => compareIds(order.userId, userId));
+    return orders.filter(order => String(order.userId) === String(userId));
 };
 
 const createOrder = async (orderData) => enviarDatos(API_URLS.orders, orderData);

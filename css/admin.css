@@ -4,6 +4,21 @@
     margin-bottom: 30px;
 }
 
+.chart-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.chart-container h3 {
+    color: #ff6b35;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .order-management-item {
     background-color: white;
     padding: 20px;

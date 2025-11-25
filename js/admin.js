@@ -81,6 +81,7 @@ const toggleAvailability = async (itemId, newStatus) => {
 const renderOrdersManagement = async () => {
     try {
         const orders = await getOrders();
+        const users = await getUsers();
         const list = document.getElementById('ordersManagementList');
         if (!list) return;
 
@@ -91,6 +92,9 @@ const renderOrdersManagement = async () => {
 
         list.innerHTML = orders.map(order => {
             const statusClass = getStatusClass(order.estado);
+            const user = users.find(u => String(u.id_usuario) === String(order.userId));
+            const clientEmail = user ? user.email : 'Usuario desconocido';
+            
             return `
                 <div class="order-management-item">
                     <div class="order-header">
@@ -99,7 +103,7 @@ const renderOrdersManagement = async () => {
                     </div>
                     <p>Fecha: ${new Date(order.fecha).toLocaleString()}</p>
                     <p>Total: $${order.total}</p>
-                    <p>Usuario ID: ${order.userId}</p>
+                    <p>Cliente: ${clientEmail}</p>
                     <details>
                         <summary>Ver productos</summary>
                         <ul>
@@ -170,7 +174,50 @@ const updateDashboardStats = (orders) => {
     if (statPending) statPending.textContent = stats.pending;
     if (statPreparing) statPreparing.textContent = stats.preparing;
     if (statDelivered) statDelivered.textContent = stats.delivered;
-    if (statSales) statSales.textContent = `$${stats.total.toFixed(2)}`;
+    if (statSales) statSales.textContent = `$${stats.total}`;
+
+    createChart(stats);
+};
+
+let chartInstance = null;
+
+const createChart = (stats) => {
+    const ctx = document.getElementById('ordersChart');
+    if (!ctx) return;
+
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
+
+    chartInstance = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['Pendientes', 'En Preparación', 'Entregados'],
+            datasets: [{
+                label: 'Pedidos',
+                data: [stats.pending, stats.preparing, stats.delivered],
+                backgroundColor: [
+                    '#ffc107',
+                    '#17a2b8',
+                    '#28a745'
+                ],
+                borderColor: [
+                    '#ffffff',
+                    '#ffffff',
+                    '#ffffff'
+                ],
+                borderWidth: 2
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                }
+            }
+        }
+    });
 };
 
 const loadAdminDashboard = async () => {
