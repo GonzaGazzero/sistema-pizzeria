@@ -70,15 +70,19 @@ const putMenuItem = (id, data) => actDatos(`${API_URLS.menu}/${id}`, data);
 const deleteMenuItem = (id) => eliminarDatos(`${API_URLS.menu}/${id}`);
 
 // apis de ordenes
-const getOrders = async () => fetchData(API_URLS.orders);
-const getOrderById = async (orderId) => fetchData(`${API_URLS.orders}/${orderId}`);
+const getOrders = async () => obtenerDatos(API_URLS.orders);
+const getOrderById = async (orderId) => obtenerDatos(`${API_URLS.orders}/${orderId}`);
 
 // Obtener pedidos de un usuario específico (filtrado en cliente)
 const getOrdersByUserId = async (userId) => {
     const orders = await getOrders();
+    if (!Array.isArray(orders)) {
+        console.warn('getOrders no devolvió un array:', orders);
+        return [];
+    }
     return orders.filter(order => compareIds(order.userId, userId));
 };
 
-const createOrder = async (orderData) => postData(API_URLS.orders, orderData);
-const updateOrder = async (orderId, orderData) => putData(`${API_URLS.orders}/${orderId}`, orderData);
-const deleteOrder = async (orderId) => deleteData(`${API_URLS.orders}/${orderId}`);
+const createOrder = async (orderData) => enviarDatos(API_URLS.orders, orderData);
+const updateOrder = async (orderId, orderData) => actDatos(`${API_URLS.orders}/${orderId}`, orderData);
+const deleteOrder = async (orderId) => eliminarDatos(`${API_URLS.orders}/${orderId}`);
